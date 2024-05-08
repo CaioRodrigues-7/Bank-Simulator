@@ -6,31 +6,36 @@ import java.util.Scanner;
 
 public class FuncionalidadeBanco{           
 
-    Double cpf;
-    int valorConta;
-    int deposito;
     int saque;
     int opcSaque;
+    int saldo;
+    double valorConta;
+    double deposito;
+    double cpf;
     String nomeCompleto;
-    String saldo;
     String agencia = "067-8";
     String senha = "1509";
+    String altorizarCriarConta;
+    
+    
+    String dadosCliente;
     String dadosBancarios;
 
-    public String validarNome(String nomeCompleto){
+    public void validarNome(){
         
         Scanner sc = new Scanner(System.in);
         
         this.nomeCompleto = nomeCompleto;
+
+        nomeCompleto = sc.nextLine();
         
             if (nomeCompleto.equals(nomeCompleto)) {
-            System.out.println("Olá " + nomeCompleto + " é um prazer atendelo, por favor siga os demais passos...");      
+            System.out.println("Olá " + nomeCompleto + " é um prazer atende-lo, por favor siga os demais passos...");      
         }
             else{
                 System.out.println("Nome invalido!!!");
-                String validarCpf = sc.nextLine();
+                nomeCompleto = sc.nextLine();
             }
-            return nomeCompleto;
         }
 
         public Double validarCpf(Double cpf){
@@ -39,46 +44,65 @@ public class FuncionalidadeBanco{
     
             this.cpf = cpf;
     
-            if (cpf != 111111111 && cpf != 999999999) {
-                System.out.println("Parabéns, você está elegivel para possuir uma conta em nosso banco!");
-                System.out.println("Essa é a sua agencia: " + agencia + " e senha: " +  senha);          
+            if (cpf != 111111111 && cpf != 999999999 && cpf > 1) {
+                System.out.println("Parabéns, você está elegivel para possuir uma conta em nosso banco!");          
             }
             else{
                 System.out.println("CPF inválido, tente novamente");
                 String validarCpf = sc.nextLine();
             }
-            return cpf;
+        return cpf;
         }
 
-        public int valorDeposito(int deposito){
+        public String altorizarCriacaoConta(String altorizarCriarConta){
+            Scanner sc = new Scanner(System.in);
+
+            this.altorizarCriarConta = altorizarCriarConta;
+            altorizarCriarConta = sc.nextLine();
+
+            if (altorizarCriarConta.equals("Sim") || altorizarCriarConta.equals("sim")) {
+                System.out.println("Essa é a sua agencia: " + agencia + " e senha: " +  senha);
+            }
+            else{
+                System.out.println("Operação cancelada! Espero que você retorne futuramente.");
+                System.exit(0);
+            }
+
+        return altorizarCriarConta;
+        }
+
+        public void valorDeposito(){
 
             Scanner sc = new Scanner(System.in);
 
             this.deposito = deposito;
-
-            if(deposito < 200){
+            
+            deposito = sc.nextInt();
+            if(deposito <= 200){
                 System.out.println("Seu saldo atual é de R$ " + deposito);
             }
             else if(deposito > 200){
                 System.out.println("Valor não liberado. Lembre-se, comece pequeno!!");
                 System.out.println("Tente novamente abaixo: ");
-                int valorDeposito = sc.nextInt();
+                deposito = sc.nextInt();
             }
-            return deposito;
+            System.out.println(deposito);
         }
 
-        public int valorSaque(int saque){
+        public double valorSaque(double valorConta){
 
             Scanner sc = new Scanner(System.in);
 
-            this.saque = saque;
-            this.deposito = deposito;
             this.opcSaque = opcSaque;
+            this.deposito =  deposito;
             this.valorConta = valorConta;
+            this.saque = saque;
 
             int opcSaque = sc.nextInt();
 
             if(opcSaque == (1)){
+
+                System.out.println(deposito);
 
                 System.out.println("Insira abaixo o valor para saque: ");
 
@@ -94,18 +118,15 @@ public class FuncionalidadeBanco{
                 else{System.out.println("Operação concluida com sucesso!!");
                 }
             }
-            else{
-                System.out.println("Operação cancelada, tenha um bom dia!!");
-            }
-            return saque;
-        }
+        return valorConta;
+        }    
 
-        public String informacaoGeral(String dadosBancarios){
+        public void informacaoGeral(){
             this.agencia = agencia;
-            this.senha = senha;
-            this.cpf= cpf;
-            this.nomeCompleto = nomeCompleto;
             this.valorConta = valorConta;
+            this.nomeCompleto = nomeCompleto;
+            this.senha = senha;
+            this.cpf= cpf; 
 
             Scanner sc = new Scanner(System.in);
 
@@ -113,16 +134,26 @@ public class FuncionalidadeBanco{
             String opcVisualizar = sc.nextLine();
 
             if (opcVisualizar.equals("1")) {
-                System.out.println("Olá " + nomeCompleto + " portador do " + cpf + " ,aqui estão seus dado| Agencia - " + agencia + " senha - " + senha + " .Você tem disponível em conta R$ " + valorConta + "!!");
+
+                System.out.println("Insira a agencia: ");
+                agencia = sc.nextLine();
+                System.out.println("Insira sua senha: ");
+                senha = sc.nextLine();
+                System.out.println("Insira seu CPF: ");
+                cpf = sc.nextDouble();
+
+                if((senha.equals("1509")) && (agencia.equals("067-8")) && cpf > 1 && cpf != 1111111111 && cpf != 999999999 ){
+                    System.out.println("Nome: " + nomeCompleto + "| CPF: " + cpf);
+                    System.out.println("Agencia: " + agencia + " | Senha: " + senha + " | R$" + valorConta);
+                    }
+                else{
+                    System.out.println("Informações inseridas estão incorretas, tente novamente mais tarde. Em caso de insistencia a conta será bloqueada!");
+                    System.exit(0);
+                    }
             }
             else{
-                System.out.println("Tenha uma ótima semana!!(Caso ocorreu erro de digitação, tecle novamente abaixo)");
-                opcVisualizar = sc.nextLine();
+                System.out.println("Tenha uma ótima semana e volte sempre!!");
+                System.exit(0);
             }
-
-
-            return dadosBancarios;
-        }
-
-
+        }            
 }
