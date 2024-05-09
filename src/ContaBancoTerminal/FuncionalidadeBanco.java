@@ -1,6 +1,5 @@
 package ContaBancoTerminal;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 
@@ -86,7 +85,6 @@ public class FuncionalidadeBanco{
                 System.out.println("Tente novamente abaixo: ");
                 deposito = sc.nextInt();
             }
-            System.out.println(deposito);
         }
 
         public double valorSaque(double valorConta){
@@ -101,8 +99,6 @@ public class FuncionalidadeBanco{
             int opcSaque = sc.nextInt();
 
             if(opcSaque == (1)){
-
-                System.out.println(deposito);
 
                 System.out.println("Insira abaixo o valor para saque: ");
 
