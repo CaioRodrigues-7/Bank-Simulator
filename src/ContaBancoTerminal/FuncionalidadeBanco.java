@@ -87,7 +87,7 @@ public class FuncionalidadeBanco{
             }
         }
 
-        public double valorSaque(double valorConta){
+        public void valorSaque(){
 
             Scanner sc = new Scanner(System.in);
 
@@ -114,7 +114,6 @@ public class FuncionalidadeBanco{
                 else{System.out.println("Operação concluida com sucesso!!");
                 }
             }
-        return valorConta;
         }    
 
         public void informacaoGeral(){

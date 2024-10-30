@@ -25,7 +25,7 @@ public class InteracaoBanco extends FuncionalidadeBanco{
         vb.valorDeposito();
 
         System.out.println("Para realizar saques digite 1, e 2 para encerrar a operação.");
-        vb.valorSaque(' ');
+        vb.valorSaque();
 
         vb.informacaoGeral();
     }
